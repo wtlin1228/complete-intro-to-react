@@ -4,8 +4,9 @@ import { Router } from "@reach/router";
 import SearchParams from "./SearchParams";
 import ThemeContext from "./ThemeContext";
 import NavBar from "./NavBar";
+import Details from "./Details";
 
-const Details = lazy(() => import("./Details"));
+// const Details = lazy(() => import("./Details"));
 
 const App = () => {
   const themeHook = useState("darkblue");
@@ -14,16 +15,16 @@ const App = () => {
       <ThemeContext.Provider value={themeHook}>
         <div>
           <NavBar />
-          <Suspense fallback={<h1>loading route ...</h1>}>
-            <Router>
-              <SearchParams path="/" />
-              <Details path="/details/:id" />
-            </Router>
-          </Suspense>
+          {/* <Suspense fallback={<h1>loading route ...</h1>}> */}
+          <Router>
+            <SearchParams path="/" />
+            <Details path="/details/:id" />
+          </Router>
+          {/* </Suspense> */}
         </div>
       </ThemeContext.Provider>
     </React.StrictMode>
   );
 };
 
-render(<App />, document.getElementById("root"));
+export default App;
